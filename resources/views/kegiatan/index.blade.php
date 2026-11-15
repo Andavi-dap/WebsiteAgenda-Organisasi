@@ -766,21 +766,6 @@ $isAdmin = session('user.is_admin') ?? false;
 Dashboard
 </a>
 
-@if($isAdmin)
-<a href="{{ route('admin.dashboard') }}">
-<svg class="side-icon" viewBox="0 0 24 24" fill="none">
-<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-</svg>
-Dashboard Admin
-</a>
-<a href="{{ route('admin.kegiatan.index') }}">
-<svg class="side-icon" viewBox="0 0 24 24" fill="none">
-<rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/>
-</svg>
-Kelola Kegiatan
-</a>
-@endif
-
 <a href="{{ route('kegiatan.kalender') }}">
 <svg class="side-icon" viewBox="0 0 24 24" fill="none">
 <rect x="3" y="5" width="18" height="16" rx="2"/>
@@ -872,11 +857,6 @@ Kelola dan pantau kegiatan himpunan mahasiswa multimedia dengan mudah
 Peran: <strong style="color:{{ $isAdmin ? '#7c3aed' : '#2563eb' }}">{{ $isAdmin ? 'Admin' : 'Anggota' }}</strong>
 </div>
 <a href="{{ route('profile.view') }}">View Profile</a>
-@if($isAdmin)
-    <a href="{{ route('admin.dashboard') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal ml-2">
-        Admin Dashboard
-    </a>
-@endif
 <a href="/logout">Logout</a>
 </div>
 
