@@ -79,6 +79,21 @@ transform:translateX(6px);
 box-shadow:0 10px 20px rgba(59,130,246,.18);
 }
 
+.menu a.menu-primary{
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:#fff;
+box-shadow:0 14px 28px rgba(37,99,235,.22);
+}
+
+.menu a.menu-primary:hover{
+transform:translateX(4px) translateY(-2px);
+box-shadow:0 18px 30px rgba(37,99,235,.28);
+}
+
+.menu a.menu-primary .side-icon{
+stroke:#fff;
+}
+
 .side-icon{
 width:18px;
 height:18px;
@@ -89,6 +104,26 @@ flex-shrink:0;
 
 .menu a:hover .side-icon{
 stroke:#fff;
+}
+
+.add-btn{
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:12px 18px;
+border-radius:999px;
+font-size:14px;
+font-weight:700;
+color:#fff;
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+box-shadow:0 12px 24px rgba(37,99,235,.24);
+transition:.25s ease;
+}
+
+.add-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 18px 30px rgba(37,99,235,.28);
 }
 
 /* MAIN */
@@ -766,6 +801,13 @@ $isAdmin = session('user.is_admin') ?? false;
 Dashboard
 </a>
 
+<a href="{{ route('kegiatan.create') }}" class="menu-primary">
+<svg class="side-icon" viewBox="0 0 24 24" fill="none">
+<path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+</svg>
+Tambah Agenda
+</a>
+
 <a href="{{ route('kegiatan.kalender') }}">
 <svg class="side-icon" viewBox="0 0 24 24" fill="none">
 <rect x="3" y="5" width="18" height="16" rx="2"/>
@@ -818,6 +860,11 @@ Kelola dan pantau kegiatan himpunan mahasiswa multimedia dengan mudah
 </div>
 
 <div class="header-right">
+
+<a href="{{ route('kegiatan.create') }}" class="add-btn">
+<i class="fa-solid fa-plus" style="font-size:13px;"></i>
+Tambah Agenda
+</a>
 
 <a href="{{ route('kegiatan.akan') }}" class="notif-btn">
 🔔

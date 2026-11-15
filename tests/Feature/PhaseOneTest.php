@@ -39,6 +39,15 @@ class PhaseOneTest extends TestCase
         $this->get('/tambah')->assertOk();
     }
 
+    public function test_dashboard_shows_add_agenda_cta(): void
+    {
+        $this->asUser();
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Tambah Agenda');
+    }
+
     public function test_user_can_store_and_update_kegiatan(): void
     {
         $this->asUser();

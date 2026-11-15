@@ -400,8 +400,8 @@ input:focus{
         <i class="fa-solid fa-clipboard-list"></i>
     </div>
 
-    <h2>TAMBAH KEGIATAN</h2>
-    <p>Isi data kegiatan organisasi dengan lengkap untuk mencatat kegiatan baru.</p>
+    <h2>TAMBAH AGENDA</h2>
+    <p>Isi data agenda organisasi dengan lengkap untuk mencatat kegiatan baru.</p>
 
     <div class="feature">
         <i class="fa-solid fa-calendar"></i>
@@ -427,8 +427,8 @@ input:focus{
         <img src="{{ asset('logo/logo1.png') }}" alt="Logo">
     </div>
     <div>
-        <div class="title">TAMBAH KEGIATAN</div>
-        <div class="subtitle">Isi data kegiatan organisasi dengan lengkap</div>
+        <div class="title">TAMBAH AGENDA</div>
+        <div class="subtitle">Isi data agenda organisasi dengan lengkap</div>
     </div>
 </div>
 
