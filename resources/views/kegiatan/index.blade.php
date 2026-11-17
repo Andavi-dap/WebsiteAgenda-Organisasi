@@ -779,7 +779,7 @@ grid-template-columns:1fr;
 </head>
 
 @php
-$isAdmin = session('user.is_admin') ?? false;
+$isAdmin = \App\Support\Role::isAdmin(session('user.jabatan', ''));
 @endphp
 
 <body>
@@ -801,12 +801,17 @@ $isAdmin = session('user.is_admin') ?? false;
 Dashboard
 </a>
 
-<a href="{{ route('kegiatan.create') }}" class="menu-primary">
+@if($isAdmin)
+<a href="{{ route('admin.dashboard') }}">
 <svg class="side-icon" viewBox="0 0 24 24" fill="none">
-<path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+<rect x="3" y="3" width="8" height="8" rx="1"/>
+<rect x="13" y="3" width="8" height="5" rx="1"/>
+<rect x="13" y="10" width="8" height="11" rx="1"/>
+<rect x="3" y="13" width="8" height="8" rx="1"/>
 </svg>
-Tambah Agenda
+Dashboard Admin
 </a>
+@endif
 
 <a href="{{ route('kegiatan.kalender') }}">
 <svg class="side-icon" viewBox="0 0 24 24" fill="none">
@@ -861,10 +866,12 @@ Kelola dan pantau kegiatan himpunan mahasiswa multimedia dengan mudah
 
 <div class="header-right">
 
+@if($isAdmin)
 <a href="{{ route('kegiatan.create') }}" class="add-btn">
 <i class="fa-solid fa-plus" style="font-size:13px;"></i>
 Tambah Agenda
 </a>
+@endif
 
 <a href="{{ route('kegiatan.akan') }}" class="notif-btn">
 🔔

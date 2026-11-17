@@ -18,6 +18,16 @@ class KegiatanController extends Controller
         return view('kegiatan.index', compact('data', 'latest', 'notif'));
     }
 
+    public function adminDashboard()
+    {
+        $data = Kegiatan::orderBy('tanggal')->orderBy('waktu')->get();
+        $total = $data->count();
+        $akanDatang = Kegiatan::akanDatang()->count();
+        $selesai = Kegiatan::selesai()->count();
+
+        return view('kegiatan.admin', compact('data', 'total', 'akanDatang', 'selesai'));
+    }
+
     public function semua()
     {
         $data = Kegiatan::orderBy('tanggal', 'asc')->get()->groupBy(function ($item) {

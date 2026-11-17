@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KegiatanController;
+use Illuminate\Support\Facades\Route;
 
 // AUTH ROUTES
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
@@ -17,14 +17,17 @@ Route::middleware('auth.user')->group(function () {
     Route::get('/kalender', [KegiatanController::class, 'kalender'])->name('kegiatan.kalender');
     Route::get('/semua-kegiatan', [KegiatanController::class, 'semua'])->name('kegiatan.semua');
 
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin/dashboard', [KegiatanController::class, 'adminDashboard'])->name('admin.dashboard');
+
+        Route::get('/tambah', [KegiatanController::class, 'create'])->name('kegiatan.create');
+        Route::post('/store', [KegiatanController::class, 'store'])->name('kegiatan.store');
+        Route::get('/edit/{id}', [KegiatanController::class, 'edit'])->whereNumber('id')->name('kegiatan.edit');
+        Route::put('/update/{id}', [KegiatanController::class, 'update'])->whereNumber('id')->name('kegiatan.update');
+        Route::delete('/delete/{id}', [KegiatanController::class, 'destroy'])->whereNumber('id')->name('kegiatan.destroy');
+    });
+
     Route::get('/profile', function () {
         return view('profile');
     })->name('profile.view');
-
-    // CRUD Kegiatan (Fase 1: Semua pengurus login berhak mengelola)
-    Route::get('/tambah', [KegiatanController::class, 'create'])->name('kegiatan.create');
-    Route::post('/store', [KegiatanController::class, 'store'])->name('kegiatan.store');
-    Route::get('/edit/{id}', [KegiatanController::class, 'edit'])->whereNumber('id')->name('kegiatan.edit');
-    Route::put('/update/{id}', [KegiatanController::class, 'update'])->whereNumber('id')->name('kegiatan.update');
-    Route::delete('/delete/{id}', [KegiatanController::class, 'destroy'])->whereNumber('id')->name('kegiatan.destroy');
 });

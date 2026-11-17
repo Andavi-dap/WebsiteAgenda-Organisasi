@@ -257,7 +257,7 @@ cursor:pointer;box-shadow:0 5px 12px rgba(0,0,0,0.1);
 </head>
 
 @php
-$isAdmin = session('user.is_admin') ?? false;
+$isAdmin = \App\Support\Role::isAdmin(session('user.jabatan', ''));
 @endphp
 
 <body>
