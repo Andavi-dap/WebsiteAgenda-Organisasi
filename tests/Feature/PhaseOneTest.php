@@ -30,6 +30,11 @@ class PhaseOneTest extends TestCase
         ]);
     }
 
+    protected function asMember(): void
+    {
+        $this->asUser();
+    }
+
     public function test_guest_is_redirected_to_login(): void
     {
         $this->get('/')->assertRedirect('/login');
@@ -136,5 +141,29 @@ class PhaseOneTest extends TestCase
 
         $this->delete("/delete/{$kegiatan->id}")->assertRedirect();
         $this->assertDatabaseMissing('kegiatans', ['id' => $kegiatan->id]);
+    }
+
+    public function test_kegiatan_creation_validation(): void
+    {
+        $this->asAdmin('Ketua Divisi Sekretaris');
+
+        $response = $this->post('/store', [
+            'nama_kegiatan' => '',
+            'tanggal' => 'invalid-date',
+            'waktu' => '',
+            'lokasi' => '',
+            'divisi' => '',
+            'pic' => '',
+        ]);
+
+        $response->assertSessionHasErrors(['nama_kegiatan', 'tanggal', 'waktu', 'lokasi', 'divisi']);
+    }
+
+    public function test_calendar_input_validation(): void
+    {
+        $this->asMember('Anggota Divisi Sekretaris');
+
+        $response = $this->get('/kalender?bulan=15&tahun=abc');
+        $response->assertSessionHasErrors(['bulan', 'tahun']);
     }
 }

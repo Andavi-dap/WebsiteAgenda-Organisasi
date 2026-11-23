@@ -112,7 +112,10 @@ $isAdmin = session('user.is_admin') ?? false;
 
 <a href="/" class="btn">Kembali Dashboard</a>
 
-<a href="/logout" class="btn btn2">Logout</a>
+<form action="{{ route('logout') }}" method="POST" style="display: inline;">
+    @csrf
+    <button type="submit" class="btn btn2" style="background: none; border: none; cursor: pointer; font: inherit;">Logout</button>
+</form>
 
 </div>
 

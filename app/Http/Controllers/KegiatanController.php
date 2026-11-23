@@ -108,6 +108,11 @@ class KegiatanController extends Controller
 
     public function kalender(Request $request)
     {
+        $request->validate([
+            'bulan' => 'nullable|integer|between:1,12',
+            'tahun' => 'nullable|integer|between:2000,2100',
+        ]);
+
         $bulan = $request->bulan ?? date('m');
         $tahun = $request->tahun ?? date('Y');
 

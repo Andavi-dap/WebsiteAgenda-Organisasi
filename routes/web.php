@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 // AUTH ROUTES
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth.user')->group(function () {
     Route::get('/', [KegiatanController::class, 'index'])->name('kegiatan.index');
@@ -27,7 +27,5 @@ Route::middleware('auth.user')->group(function () {
         Route::delete('/delete/{id}', [KegiatanController::class, 'destroy'])->whereNumber('id')->name('kegiatan.destroy');
     });
 
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile.view');
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile.view');
 });

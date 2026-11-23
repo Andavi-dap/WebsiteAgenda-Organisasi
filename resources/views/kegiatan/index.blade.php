@@ -911,7 +911,10 @@ Tambah Agenda
 Peran: <strong style="color:{{ $isAdmin ? '#7c3aed' : '#2563eb' }}">{{ $isAdmin ? 'Admin' : 'Anggota' }}</strong>
 </div>
 <a href="{{ route('profile.view') }}">View Profile</a>
-<a href="/logout">Logout</a>
+<form action="{{ route('logout') }}" method="POST" style="display:inline;">
+    @csrf
+    <button type="submit" style="background:none; border:none; color:inherit; cursor:pointer; font:inherit; padding:0;">Logout</button>
+</form>
 </div>
 
 </div>

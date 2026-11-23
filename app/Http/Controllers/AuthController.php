@@ -475,4 +475,10 @@ class AuthController extends Controller
         session()->forget('user');
         return redirect('/login');
     }
+
+    public function profile()
+    {
+        $user = session('user');
+        return view('profile', compact('user'));
+    }
 }
